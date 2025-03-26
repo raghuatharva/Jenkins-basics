@@ -50,3 +50,4 @@ pipeline {
 }
 // deletedir() works only inside a node {} block or a script {} block when used in post {} in declarative pipelines. Since you are using a declarative pipeline, deletedir() needs to be wrapped in script {} inside post {}.
 
+// Since your GitHub webhook is for the entire repo, Jenkins will still trigger a build for any change in the repo. However, if my pipeline is configured to work only inside a specific subfolder, changes outside that subfolder won't affect the build itself.
