@@ -1,0 +1,53 @@
+// paremeters are nothing but varaiables.tf in terraform
+
+pipeline {
+    agent {
+        label 'AGENT-1'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building the application under this guy named ${params.USERNAME}..."
+                echo " choice is ${params.ENV}"
+
+            }
+        stage('xyz') {
+            steps {
+                script {
+                    input message: "⚠️ Warning: This is a Production Deployment! Continue?", ok: "Deploy Now"
+                }
+        }
+        }
+
+        }
+        stage('test') {
+            steps {
+                echo "testing the application..."
+            }
+
+        }
+        stage('deploy') {
+            steps {
+                echo "deploying the application..."
+            }
+
+        }
+    }
+    post {
+        always {
+            echo "this section always runs" // echo command here is groovy , not shell scripting 
+            deleteDir()                     // delete workspace directory after building 
+        }
+        success {
+            echo " this section runs only when pipeline is success"
+        }
+        failure {
+            echo "this section runs only when pipeline is failure"
+        }
+
+    }
+    
+}
+// deletedir() works only inside a node {} block or a script {} block when used in post {} in declarative pipelines. Since you are using a declarative pipeline, deletedir() needs to be wrapped in script {} inside post {}.
+
+// Since your GitHub webhook is for the entire repo, Jenkins will still trigger a build for any change in the repo. However, if my pipeline is configured to work only inside a specific subfolder, changes outside that subfolder won't affect the build itself.
