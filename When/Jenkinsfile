@@ -6,8 +6,10 @@ pipeline {
     }
     stages {
         stage('checking when') {
-            expression {
-                env.GIT_BRANCH == "origin/main"
+            when {
+                expression {
+                    env.GIT_BRANCH == "origin/main"
+                }
             }
         }
         stage('test') {
