@@ -11,18 +11,9 @@ pipeline {
                     env.GIT_BRANCH == "origin/main"
                 }
             }
-        }
-        stage('test') {
             steps {
-                echo "testing the application..."
+                echo "This stage runs only when the branch is 'origin/main'"
             }
-
-        }
-        stage('deploy') {
-            steps {
-                echo "deploying the application..."
-            }
-
         }
     }
     post {
