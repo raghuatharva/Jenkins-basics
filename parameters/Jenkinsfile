@@ -1,17 +1,20 @@
+// paremeters are nothing but varaiables.tf in terraform
+
 pipeline {
     agent {
         label 'AGENT-1'
     }
-    options {
-        timeout(time: 10, unit: 'MINUTES') // Set a timeout for the pipeline
-        disableConcurrentBuilds()       // Prevent parallel executions
-        timestamps()                 // Enable timestamps in logs
-        retry(3)                         // retries even if pipeline failes for 3 times
+    parameters { 
+        string(name: 'USERNAME', defaultValue: 'admin', description: 'Enter the username')
+        booleanParam(name: 'DEBUG_MODE', defaultValue: false, description: 'Enable debug mode?')
+        choice(name: 'ENV', choices: ['DEV', 'QA', 'PROD'], description: 'Select the environment')
+        password(name: 'SECRET', description: 'Enter the secret password')
     }
     stages {
         stage('Build') {
             steps {
-                echo "Building the application..."
+                echo "Building the application under this guy named ${params.USERNAME}..."
+                echo " choice is ${params.ENV}"
             }
 
         }
