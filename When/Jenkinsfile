@@ -1,4 +1,4 @@
-// this is used to run only when the branch you are givin is main
+// this is used to run only when the branch you are givin is main -- condition always need what to do step , here its telling This stage runs only when the branch is 'origin/main' 
 
 pipeline {
     agent {
@@ -12,7 +12,7 @@ pipeline {
                 }
             }
             steps {
-                echo "This stage runs only when the branch is 'origin/main'"
+                echo "you are in 'origin/main', you can move forward"
             }
         }
     }
