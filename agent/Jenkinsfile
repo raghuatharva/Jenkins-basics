@@ -25,6 +25,7 @@ pipeline {
     post {
         always {
             echo "this section always runs" // echo command here is groovy , not shell scripting 
+            DeleteDir()                     // delete workspace directory after building 
         }
         success {
             echo " this section runs only when pipeline is success"
