@@ -11,7 +11,8 @@ pipeline {
                 echo " choice is ${params.ENV}"
 
             }
-       stage('xyz') {
+        }
+        stage('xyz') {
          steps {
             script {
                 input message: "⚠️ Warning: This is a Production Deployment! Continue?", ok: "Deploy Now"
