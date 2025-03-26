@@ -25,7 +25,9 @@ pipeline {
     post {
         always {
             echo "this section always runs" // echo command here is groovy , not shell scripting 
-            deletedir()                     // delete workspace directory after building 
+            script{
+                deletedir()                     // delete workspace directory after building 
+            }
         }
         success {
             echo " this section runs only when pipeline is success"
@@ -37,3 +39,5 @@ pipeline {
     }
     
 }
+// deletedir() works only inside a node {} block or a script {} block when used in post {} in declarative pipelines. Since you are using a declarative pipeline, deletedir() needs to be wrapped in script {} inside post {}.
+
