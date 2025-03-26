@@ -12,6 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building the application..."
+                echo " will this trigger outside the mentioned path??"
             }
 
         }
