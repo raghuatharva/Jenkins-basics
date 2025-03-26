@@ -15,6 +15,7 @@ pipeline {
             steps {
                 echo "Building the application under this guy named ${params.USERNAME}..."
                 echo " choice is ${params.ENV}"
+
             }
 
         }
@@ -38,6 +39,7 @@ pipeline {
         }
         success {
             echo " this section runs only when pipeline is success"
+            echo " this build is due to webhook trigger"
         }
         failure {
             echo "this section runs only when pipeline is failure"
